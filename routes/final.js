@@ -28,6 +28,7 @@ router.post('/search', function (req, res) {
     //  TODO 1 - (6 pts) you need FIVE variables to do the following
     //  create your variables here
     //  TODO 1A you need an array for the jobs that were found by your code
+    let outList = jobList;
     //  TODO 1B you need the average salary for the list of jobs being returned. This one is here for you already
     let average = 0;
     //  TODO 1C you need a title for the page - "Jobs", "Jobs for Managers in Dallas", "Jobs in Fort Worth"
