@@ -31,13 +31,22 @@ router.post('/search', function (req, res) {
     //  TODO 1B you need the average salary for the list of jobs being returned. This one is here for you already
     let average = 0;
     //  TODO 1C you need a title for the page - "Jobs", "Jobs for Managers in Dallas", "Jobs in Fort Worth"
+    let title = "";
     //  TODO 1D you need a variable to hold the city entered by the user
     let city = req.body.city;
     //  TODO 1E you need another variable to hold the category entered by the user
+    let category = req.body.category
 
     //  TODO 2 - (40 pts) List of things to do - look at TODOs 4 and 5. You will create functions that you can use here. Use them
     //      TODO A - IF the category and city fields are empty THEN list ALL jobs
+    outList = jobList;
     //      TODO B - IF the category and city fields BOTH have data then THEN list all jobs for that city for that category
+    if (city) {
+        outList = jobList.filter(job => job.city == city)
+    }
+    if (category) {
+        outList = jobList.filter(job => job.catogory == category)
+    }
     //      TODO C - IF the category field has data THEN list all jobs in that category
     //      TODO D - IF the city field has data THEN list all jobs in that city
 
@@ -61,7 +70,12 @@ router.post('/search', function (req, res) {
 //              router.get..... opening and closing braces and all of the code in between
 // this will show the job.pug page you created with the job you found. Or code similar to this
 //  res.render('job', justTheOneJob);
+router.get('/job/:jobid', function(req, res, next){
+    let jobid = req.params.jobid;
+    let job = joblist.filter(job => job.id == jobid);
 
+    res.render('job', {job: job[0] });
+})
 
 /*
  *      getJobsByCategory - create an array with all jobs that are in the desired category
